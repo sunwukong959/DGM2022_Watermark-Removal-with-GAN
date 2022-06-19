@@ -18,7 +18,7 @@ def load_image(path):
 
 
 if __name__ == '__main__':
-    img = load_image('data/masks/image_0001.png')
+    img = load_image('data/image_0001.png')
     print('image shape: ', img.shape)
     plt.imshow(img)
     plt.show()
