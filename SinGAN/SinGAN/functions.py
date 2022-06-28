@@ -163,6 +163,9 @@ def np2torch(x,opt):
         x = x[:,:,:,None]
         x = x.transpose((3, 2, 0, 1))/255
     else:
+        if len(x.shape) == 2:
+            expand_x = np.expand_dims(x, axis=2)
+            x = np.repeat(expand_x, 3, axis=2)
         x = color.rgb2gray(x)
         x = x[:,:,None,None]
         x = x.transpose(3, 2, 0, 1)
