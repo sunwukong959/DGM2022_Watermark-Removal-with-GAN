@@ -288,7 +288,7 @@ def generate_dir2save(opt):
 
 def post_config(opt):
     # init fixed parameters
-    opt.device = torch.device("cpu" if opt.not_cuda else "cuda:" + opt.cuda_device_number)
+    opt.device = torch.device("cpu" if opt.not_cuda else "cuda:" + str(opt.cuda_device_number))
     opt.niter_init = opt.niter
     opt.noise_amp_init = opt.noise_amp
     opt.nfc_init = opt.nfc
