@@ -288,7 +288,7 @@ def generate_dir2save(opt):
 
 def post_config(opt):
     # init fixed parameters
-    opt.device = torch.device("cpu" if opt.not_cuda else "cuda:3")
+    opt.device = torch.device("cpu" if opt.not_cuda else "cuda:" + opt.cuda_device_number)
     opt.niter_init = opt.niter
     opt.noise_amp_init = opt.noise_amp
     opt.nfc_init = opt.nfc
@@ -346,7 +346,7 @@ def dilate_mask(mask,opt):
     if opt.mode == "harmonization":
         element = morphology.disk(radius=7)
     if opt.mode == "editing":
-        element = morphology.disk(radius=20)
+        element = morphology.disk(radius=10)
     mask = torch2uint8(mask)
     mask = mask[:,:,0]
     mask = morphology.binary_dilation(mask,selem=element)
