@@ -9,7 +9,8 @@ import SinGAN.functions as functions
 import torch
 import cv2
 
-if __name__ == '__main__':
+
+def main(args=None):
     parser = get_arguments()
     parser.add_argument('--input_dir', help='input image dir', default='Input/Images')
     parser.add_argument('--input_name', help='training image name', required=True)
@@ -23,7 +24,7 @@ if __name__ == '__main__':
     parser.add_argument('--hh', default=0, type=int)
     parser.add_argument('--wl', default=0, type=int)
     parser.add_argument('--wh', default=0, type=int)"""
-    opt = parser.parse_args()
+    opt = parser.parse_args(args)
     opt = functions.post_config(opt)
     print(opt.input_name)
     if opt.ref_name == "":
@@ -113,3 +114,6 @@ if __name__ == '__main__':
             plt.imsave('%s/start_scale=%d.png' % (dir2save, opt.inpainting_start_scale),
                        functions.convert_image_np(out.detach()), vmin=0, vmax=1)
 
+
+if __name__ == '__main__':
+    main()
